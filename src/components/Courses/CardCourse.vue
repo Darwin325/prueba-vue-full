@@ -16,6 +16,7 @@ const props = defineProps<{
          <div class="card-body">
             <p>{{ course.description }}</p>
             <p>Inicio del curso: {{ course.start_date }}</p>
+
             <div class="row">
                <div class="col-6">
                   Hora inicio:

@@ -21,6 +21,7 @@ const listStudents: Student[] = computed<Student[]>(() => {
             <th scope="col">Apellido</th>
             <th scope="col">Correo</th>
             <th scope="col">Acciones</th>
+            <th scope="col">Cursos</th>
          </tr>
       </thead>
 
@@ -31,8 +32,25 @@ const listStudents: Student[] = computed<Student[]>(() => {
             <td>{{ student.lastName }}</td>
             <td>{{ student.email }}</td>
             <td>
-               <button class="btn btn-primary">Editar</button>{{ " " }}
-               <button class="btn btn-danger">Eliminar</button>
+               <span class="badge rounded-pill bg-danger">Eliminar</span
+               >{{ " " }}
+               <span class="badge rounded-pill bg-warning">Editar</span>
+            </td>
+            <td>
+               <router-link
+                  :to="{
+                     name: 'StudentCourses',
+                     params: { id: student.id },
+                  }"
+               >
+                  <span
+                     class="badge rounded-pill bg-success"
+                     data-bs-toggle="tooltip"
+                     data-bs-placement="left"
+                     :title="'Ver los cursos asociados a ' + student.name"
+                     >Ver</span
+                  >
+               </router-link>
             </td>
          </tr>
       </tbody>
