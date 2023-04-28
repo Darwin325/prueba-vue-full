@@ -1,4 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { router } from "../../Routes/main"
+import { logout } from "../../services/Auth"
+import { useUserStore } from "../../store/UserStore"
+
+const store = useUserStore()
+
+const closeSession = async () => {
+   await logout()
+   store.setIsLogged(false)
+   await router.push({ name: "Login" })
+}
+</script>
 
 <template>
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,6 +45,11 @@
                   >
                </li>
             </ul>
+            <div class="nav-item ms-auto">
+               <a class="nav-link" href="#" @click="closeSession"
+                  >Cerrar sesión</a
+               >
+            </div>
          </div>
       </div>
    </nav>
