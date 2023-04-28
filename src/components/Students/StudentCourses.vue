@@ -4,7 +4,8 @@ import Modal from "../Shared/Modal.vue"
 import { ModalSize } from "../../models/modal"
 import { HookStudentCourse } from "./HookStudentCourse"
 
-const { student, showModal, distinctCourses, courses } = HookStudentCourse()
+const { student, showModal, distinctCourses, courses, addCourse } =
+   HookStudentCourse()
 </script>
 
 <template>
@@ -26,7 +27,9 @@ const { student, showModal, distinctCourses, courses } = HookStudentCourse()
    >
       <template #title> Agregar cursos a: {{ student.name }} </template>
 
-      <div class="row">
+      <h2 v-if="distinctCourses.length === 0">No hay cursos para mostrar</h2>
+
+      <div class="row" v-else>
          <CardCourse
             v-for="course in distinctCourses"
             :key="course.id"
@@ -34,7 +37,12 @@ const { student, showModal, distinctCourses, courses } = HookStudentCourse()
          >
             <div class="row mt-3">
                <div class="d-flex justify-content-center">
-                  <button class="btn btn-success btn-sm">Agregar</button>
+                  <button
+                     class="btn btn-success btn-sm"
+                     @click="addCourse(course.id)"
+                  >
+                     Agregar
+                  </button>
                </div>
             </div>
          </CardCourse>

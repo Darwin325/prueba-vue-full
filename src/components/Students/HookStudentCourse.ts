@@ -12,7 +12,10 @@ export const HookStudentCourse = () => {
    const courseStore = useCourseStore()
    const showModal = ref(false)
 
-   storeStudent.getStudentCoursesList(parseInt(routeParams.id as string))
+   const { addStudentToCourseStore, getStudentCoursesList } = storeStudent
+   const { getCoursesList } = courseStore
+
+   getStudentCoursesList(parseInt(routeParams.id as string))
 
    const student = computed(() => {
       return createStudentAdapter(storeStudent.studentCourses as any)
@@ -24,7 +27,20 @@ export const HookStudentCourse = () => {
       }) as Course[]
    })
 
-   courseStore.getCoursesList()
+   const addCourse = async (courseId: number) => {
+      if (!confirm("¿Esta seguro que desea agregar el curso?")) return
+      try {
+         await addStudentToCourseStore(
+            parseInt(routeParams.id as string),
+            courseId
+         )
+         alert("Curso agregado correctamente")
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
+   getCoursesList()
 
    const distinctCourses = computed(() => {
       return courseStore.courses.filter((course) => {
@@ -32,5 +48,11 @@ export const HookStudentCourse = () => {
       })
    })
 
-   return { showModal, student, distinctCourses, courses }
+   return {
+      showModal,
+      student,
+      distinctCourses,
+      courses,
+      addCourse,
+   }
 }

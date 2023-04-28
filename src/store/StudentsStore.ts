@@ -1,7 +1,11 @@
 import { defineStore } from "pinia"
 import { Student, StudentCourses } from "../models/students"
 import { ref } from "vue"
-import { getStudentCourses, getStudents } from "../services/Students"
+import {
+   addStudentToCourse,
+   getStudentCourses,
+   getStudents,
+} from "../services/Students"
 
 export const useStudentsStore = defineStore("students", () => {
    const students = ref<Student[]>([])
@@ -27,10 +31,22 @@ export const useStudentsStore = defineStore("students", () => {
       }
    }
 
+   async function addStudentToCourseStore(studentId: number, courseId: number) {
+      try {
+         const response = await addStudentToCourse(studentId, courseId)
+         const { data } = response.data
+         getStudentCoursesList(studentId)
+         return data
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
    return {
       getStudentsList,
       students,
       getStudentCoursesList,
       studentCourses,
+      addStudentToCourseStore,
    }
 })
