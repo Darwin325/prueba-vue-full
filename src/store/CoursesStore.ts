@@ -1,11 +1,15 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import { Course } from "../models/courses"
-import { getCourses } from "../services/Courses"
-import { createCourseAdapter } from "../adapters/CourseAdapter"
+import { Course, TopCourses } from "../models/courses"
+import { getCourses, getTopCourses } from "../services/Courses"
+import {
+   createCourseAdapter,
+   createTopCourseAdapter,
+} from "../adapters/CourseAdapter"
 
 export const useCourseStore = defineStore("course", () => {
    const courses = ref<Course[]>([])
+   const topCourses = ref<TopCourses[]>([])
 
    async function getCoursesList() {
       try {
@@ -19,5 +23,23 @@ export const useCourseStore = defineStore("course", () => {
       }
    }
 
-   return { courses, getCoursesList }
+   async function getTopCoursesList({
+      old_date,
+      limit,
+   }: {
+      old_date?: string
+      limit?: number
+   }) {
+      try {
+         const response = await getTopCourses({ old_date, limit })
+         const { data } = response.data
+         topCourses.value = data.map((course: Course) =>
+            createTopCourseAdapter(course)
+         )
+      } catch (e) {
+         console.log(e)
+      }
+   }
+
+   return { courses, getCoursesList, getTopCoursesList, topCourses }
 })

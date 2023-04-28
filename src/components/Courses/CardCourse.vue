@@ -27,6 +27,8 @@ const props = defineProps<{
                   <span class="badge bg-primary"> {{ course.time.end }}</span>
                </div>
             </div>
+
+            <slot></slot>
          </div>
       </div>
    </div>

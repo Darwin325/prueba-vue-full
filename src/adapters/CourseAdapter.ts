@@ -1,4 +1,4 @@
-import { Course } from "../models/courses"
+import { Course, TopCourses } from "../models/courses"
 
 export const createCourseAdapter = (course: any): Course => {
    const time = JSON.parse(course.time)
@@ -10,4 +10,9 @@ export const createCourseAdapter = (course: any): Course => {
       end_date: course.end_date,
       time,
    }
+}
+
+export const createTopCourseAdapter = (course: any): TopCourses => {
+   const courses = createCourseAdapter(course)
+   return { ...courses, studentsCount: course.students_count }
 }

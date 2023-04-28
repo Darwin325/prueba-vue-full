@@ -8,3 +8,7 @@ export interface Course {
    end_date: string
    time: Time
 }
+
+export interface TopCourses extends Course {
+   studentsCount: number
+}
