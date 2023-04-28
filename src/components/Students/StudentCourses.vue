@@ -1,26 +1,45 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router"
-import { computed } from "vue"
-const routeParams = useRoute().params
-import { useStudentsStore } from "../../store/StudentsStore"
 import CardCourse from "../Courses/CardCourse.vue"
-import { createCourseAdapter } from "../../adapters/CourseAdapter"
-import { Course } from "../../models/courses"
+import Modal from "../Shared/Modal.vue"
+import { ModalSize } from "../../models/modal"
+import { HookStudentCourse } from "./HookStudentCourse"
 
-const storeStudent = useStudentsStore()
-storeStudent.getStudentCoursesList(parseInt(routeParams.id as string))
-const courses = computed(() => {
-   return storeStudent.studentCourses?.courses.map((course) => {
-      return createCourseAdapter(course)
-   }) as Course[]
-})
+const { student, showModal, distinctCourses, courses } = HookStudentCourse()
 </script>
 
 <template>
-   <h2>Cursos del estudiante {{ storeStudent.studentCourses?.name }}</h2>
+   <div class="d-flex justify-content-between mt-3">
+      <h2>Cursos del estudiante {{ student.name }}</h2>
+      <button class="btn btn-success" @click="showModal = !showModal">
+         Agregar curso
+      </button>
+   </div>
+
    <div class="row mt-5">
       <CardCourse v-for="course in courses" :key="course.id" :course="course" />
    </div>
+
+   <Modal
+      :show-modal="showModal"
+      @close="showModal = false"
+      :modal-size="ModalSize.xl"
+   >
+      <template #title> Agregar cursos a: {{ student.name }} </template>
+
+      <div class="row">
+         <CardCourse
+            v-for="course in distinctCourses"
+            :key="course.id"
+            :course="course"
+         >
+            <div class="row mt-3">
+               <div class="d-flex justify-content-center">
+                  <button class="btn btn-success btn-sm">Agregar</button>
+               </div>
+            </div>
+         </CardCourse>
+      </div>
+   </Modal>
 </template>
 
 <style scope></style>
