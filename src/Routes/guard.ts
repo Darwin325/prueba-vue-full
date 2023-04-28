@@ -4,8 +4,6 @@ import { getUser } from "../utils/userLocalStore"
 
 export const routerGuard = (router: Router) => {
    router.beforeEach((to: any, from: any) => {
-      console.log(!getToken(), !getUser())
-
       if (to.name === "VerifyEmail") {
          return true
       }
