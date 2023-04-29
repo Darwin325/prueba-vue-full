@@ -16,7 +16,7 @@ const { student, showModal, distinctCourses, courses, addCourse } =
       </button>
    </div>
 
-   <div class="row mt-5">
+   <div class="student-courses mt-5">
       <CardCourse v-for="course in courses" :key="course.id" :course="course" />
    </div>
 
@@ -29,7 +29,7 @@ const { student, showModal, distinctCourses, courses, addCourse } =
 
       <h2 v-if="distinctCourses.length === 0">No hay cursos para mostrar</h2>
 
-      <div class="row" v-else>
+      <div class="student-courses" v-else>
          <CardCourse
             v-for="course in distinctCourses"
             :key="course.id"
@@ -50,4 +50,10 @@ const { student, showModal, distinctCourses, courses, addCourse } =
    </Modal>
 </template>
 
-<style scope></style>
+<style scope>
+.student-courses {
+   display: grid;
+   gap: 1rem;
+   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+</style>

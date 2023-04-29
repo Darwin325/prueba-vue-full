@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { LoginHooks } from "./Hooks"
+import { useUserStore } from "../../store/UserStore"
+const userState = useUserStore()
+
 const { loggedUser, form } = LoginHooks()
+
+userState.setIsLogged(false)
 </script>
 <template>
    <div class="login">

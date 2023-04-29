@@ -7,7 +7,7 @@ const props = defineProps<{
 }>()
 </script>
 <template>
-   <div class="col-4 mb-5">
+   <div class="card-container">
       <div class="card">
          <div class="card-header">
             <h3>{{ course.name }}</h3>
@@ -34,4 +34,8 @@ const props = defineProps<{
    </div>
 </template>
 
-<style scope></style>
+<style scope>
+.card-container {
+   
+}
+</style>
