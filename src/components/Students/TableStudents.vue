@@ -5,7 +5,7 @@ import { createStudentAdapter } from "../../adapters/StudentAdapter"
 
 const props = defineProps<{ students: any }>()
 
-const listStudents: Student[] = computed<Student[]>(() => {
+const listStudents = computed<Student[]>(() => {
    return props.students.data?.map((student: Student) => {
       return createStudentAdapter(student)
    })
