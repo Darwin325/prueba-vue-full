@@ -39,7 +39,7 @@ const { student, showModal, distinctCourses, courses, addCourse } =
                <div class="d-flex justify-content-center">
                   <button
                      class="btn btn-success btn-sm"
-                     @click="addCourse(course.id)"
+                     @click="addCourse(course.id as number)"
                   >
                      Agregar
                   </button>
