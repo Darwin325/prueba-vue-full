@@ -5,10 +5,12 @@ const props = withDefaults(
    defineProps<{
       showModal: boolean
       modalSize: ModalSize
+      closeButton?: boolean
    }>(),
    {
       showModal: false,
       modalSize: ModalSize.sm,
+      closeButton: true,
    }
 )
 
@@ -66,6 +68,7 @@ const closeModal = () => {
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                   @click="closeModal"
+                  v-if="closeButton"
                   emit="closeModal"
                >
                   Close

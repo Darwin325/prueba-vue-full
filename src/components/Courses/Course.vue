@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CardCourse from "./CardCourse.vue"
 import { HookCourse } from "./HookCourse"
+import CreateCourse from "./Shared/CreateCourse.vue"
 
 const { courses, getCoursesList } = HookCourse()
 
@@ -8,7 +9,12 @@ getCoursesList()
 </script>
 
 <template>
-   <h2 class="text-center mb-5 mt-3">Listado de cursos</h2>
+   <div
+      class="d-flex flex-wrap justify-content-between align-item-center mt-3 mb-4"
+   >
+      <h2>Cursos</h2>
+      <CreateCourse />
+   </div>
 
    <div class="course-courses">
       <CardCourse v-for="course in courses" :course="course" />

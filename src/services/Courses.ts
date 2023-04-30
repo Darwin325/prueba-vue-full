@@ -20,3 +20,7 @@ export const getTopCourses = async ({
 
    return await axios.get(url.href)
 }
+
+export const createCourse = async (course: any) => {
+   return await axios.post("/courses", course)
+}
