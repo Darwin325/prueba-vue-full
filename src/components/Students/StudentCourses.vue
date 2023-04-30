@@ -12,7 +12,7 @@ const { student, showModal, distinctCourses, courses, addCourse } =
    <div class="d-flex justify-content-between mt-3">
       <h2>Cursos del estudiante {{ student.name }}</h2>
       <button class="btn btn-success" @click="showModal = !showModal">
-         Agregar curso
+         Agregar curso a este estudiante
       </button>
    </div>
 
