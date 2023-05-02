@@ -6,6 +6,7 @@ const Home = () => import("../components/Home.vue")
 const Courses = () => import("../components/Courses/Course.vue")
 const Students = () => import("../components/Students/Students.vue")
 const StudentCourses = () => import("../components/Students/StudentCourses.vue")
+const Register = () => import("../components/Auth/Register.vue")
 
 export const routes = [
    { path: "/login", component: Login, name: "Login" },
@@ -17,6 +18,7 @@ export const routes = [
       component: StudentCourses,
       name: "StudentCourses",
    },
+   { path: "/register", component: Register, name: "Register" },
 ]
 
 export const router = createRouter({

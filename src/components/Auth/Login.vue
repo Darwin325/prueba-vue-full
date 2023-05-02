@@ -54,6 +54,10 @@ userState.setIsLogged(false)
                </button>
             </div>
          </form>
+         <p class="mt-2">
+            Ni tienes cuenta,
+            <router-link to="/register"> crea una aquí.</router-link>
+         </p>
       </div>
    </div>
 </template>
@@ -65,7 +69,7 @@ userState.setIsLogged(false)
    justify-content: center;
    width: 100%;
    height: 80vh;
-   max-width: 330px;
+   max-width: 380px;
    padding: 15px;
    margin: auto;
 }

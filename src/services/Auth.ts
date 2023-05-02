@@ -1,5 +1,5 @@
 import { axiosInstance as axios } from "../config/axios"
-import { UserLogin } from "../models/user"
+import { UserLogin, UserRegister } from "../models/user"
 import { removeToken } from "../utils/token"
 import { removeUser } from "../utils/userLocalStore"
 
@@ -17,4 +17,8 @@ export const logout = async () => {
    } catch (error) {
       console.log(error)
    }
+}
+
+export const register = async (data: UserRegister) => {
+   return await axios.post("register", data)
 }
