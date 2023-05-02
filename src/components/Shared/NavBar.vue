@@ -2,8 +2,11 @@
 import { router } from "../../Routes/main"
 import { logout } from "../../services/Auth"
 import { useUserStore } from "../../store/UserStore"
+import { HookPolicyUser } from "../../Policy/HookPolicyUser"
+import { Roles } from "../../Policy/Roles"
 
 const store = useUserStore()
+const { can } = HookPolicyUser()
 
 const closeSession = async () => {
    await logout()
@@ -39,9 +42,15 @@ const closeSession = async () => {
                   >
                </li>
 
-               <li class="nav-item">
+               <li class="nav-item" v-if="can([Roles.ADMIN])">
                   <router-link class="nav-link" to="/students"
                      >Estudiantes</router-link
+                  >
+               </li>
+
+               <li class="nav-item">
+                  <router-link class="nav-link" to="/students"
+                     >Mis cursos</router-link
                   >
                </li>
             </ul>

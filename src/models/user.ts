@@ -11,6 +11,7 @@ export interface User {
    lastName: string
    email: string
    age: number
+   roleId: number
 }
 
 export interface Passwords {
