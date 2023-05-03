@@ -3,7 +3,7 @@ import CardCourse from "./CardCourse.vue"
 import { HookCourse } from "./HookCourse"
 import CreateCourse from "./Shared/CreateCourse.vue"
 
-const { courses, getCoursesList } = HookCourse()
+const { courses, getCoursesList, can, Roles } = HookCourse()
 
 getCoursesList()
 </script>
@@ -13,7 +13,7 @@ getCoursesList()
       class="d-flex flex-wrap justify-content-between align-item-center mt-3 mb-4"
    >
       <h2>Cursos</h2>
-      <CreateCourse />
+      <CreateCourse v-if="!can([Roles.STUDENT])" />
    </div>
 
    <div class="course-courses">
