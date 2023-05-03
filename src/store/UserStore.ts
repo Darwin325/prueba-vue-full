@@ -6,7 +6,7 @@ import { getUser } from "../utils/userLocalStore"
 
 export const useUserStore = defineStore("user", () => {
    const isLogged = ref<boolean>(false)
-   const myData = ref<User>()
+   const myData = ref<User>(getUser())
    const userName = ref(getUser()?.name)
 
    function setIsLogged(value: boolean) {

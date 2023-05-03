@@ -5,6 +5,10 @@ import { computed, ref } from "vue"
 import { useStudentsStore } from "../../store/StudentsStore"
 import { createCourseAdapter } from "../../adapters/CourseAdapter"
 import { Course } from "../../models/courses"
+import { HookPolicyUser } from "../../Policy/HookPolicyUser"
+import { storeToRefs } from "pinia"
+
+const { can, Roles } = HookPolicyUser()
 
 export const HookStudentCourse = () => {
    const routeParams = useRoute().params
@@ -15,10 +19,12 @@ export const HookStudentCourse = () => {
    const { addStudentToCourseStore, getStudentCoursesList } = storeStudent
    const { getCoursesList } = courseStore
 
+   const { studentCourses } = storeToRefs(storeStudent)
+
    getStudentCoursesList(parseInt(routeParams.id as string))
 
    const student = computed(() => {
-      return createStudentAdapter(storeStudent.studentCourses as any)
+      return createStudentAdapter(studentCourses as any)
    })
 
    const courses = computed(() => {
@@ -54,5 +60,7 @@ export const HookStudentCourse = () => {
       distinctCourses,
       courses,
       addCourse,
+      can,
+      Roles,
    }
 }

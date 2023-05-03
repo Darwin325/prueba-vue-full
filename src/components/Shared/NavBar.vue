@@ -48,8 +48,13 @@ const closeSession = async () => {
                   >
                </li>
 
-               <li class="nav-item">
-                  <router-link class="nav-link" to="/students"
+               <li class="nav-item" v-if="can([Roles.STUDENT])">
+                  <router-link
+                     class="nav-link"
+                     :to="{
+                        name: 'StudentCourses',
+                        params: { id: store.myData.id },
+                     }"
                      >Mis cursos</router-link
                   >
                </li>
