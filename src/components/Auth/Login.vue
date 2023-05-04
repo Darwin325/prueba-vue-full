@@ -37,7 +37,7 @@ userState.setIsLogged(false)
                />
             </div>
 
-            <div class="mb-3 form-check">
+            <!-- <div class="mb-3 form-check">
                <input
                   type="checkbox"
                   class="form-check-input"
@@ -46,7 +46,7 @@ userState.setIsLogged(false)
                <label class="form-check-label" for="exampleCheck1"
                   >Recordarme</label
                >
-            </div>
+            </div> -->
 
             <div class="d-grid gap-2">
                <button type="submit" class="btn btn-success">
